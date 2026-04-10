@@ -1,6 +1,7 @@
 package com.example.zegar_szachowy;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +10,8 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
+    private Button button1, button2;
+    private Gracz gracz1,gracz2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +23,9 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        button1 = findViewById(R.id.button1);
+        button2 = findViewById(R.id.button2);
+        gracz1 = new Gracz(true,button1);
+        gracz2 = new Gracz(false,button2);
     }
 }
