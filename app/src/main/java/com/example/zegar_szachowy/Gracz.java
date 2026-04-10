@@ -10,6 +10,7 @@ public class Gracz {
     private CountDownTimer countDownTimer;
     private Button button;
 
+
     public Gracz(boolean czyAktywny, Button button) {
         this.czyAktywny = czyAktywny;
         this.button = button;
@@ -18,13 +19,23 @@ public class Gracz {
             uruchomZegar();
         }
     }
+    public void odwrocAktywnosc(){
+        czyAktywny = !czyAktywny;
+        if(czyAktywny){
+            uruchomZegar();
+        }
+        else{
+            zatrzymajZegar();
+        }
+    }
 
     private void uruchomZegar(){
         countDownTimer = new CountDownTimer(liczbaSekund*1000,1000) {
             @Override
             public void onTick(long l) {
                 liczbaSekund = (int)l/1000;
-                button.setText(liczbaSekund+"");
+                int minuty = (liczbaSekund/60)%60;
+                button.setText((minuty)+":"+String.format("%02d",liczbaSekund%60));
             }
 
             @Override
@@ -33,5 +44,8 @@ public class Gracz {
             }
         };
         countDownTimer.start();
+    }
+    private void zatrzymajZegar(){
+        countDownTimer.cancel();
     }
 }
